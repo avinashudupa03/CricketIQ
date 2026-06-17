@@ -2,17 +2,17 @@ import api from './axios';
 
 export const authApi = {
   signup: (data: { name: string; email: string; password: string }) =>
-    api.post('/auth/signup', data),
+    api.post('/api/auth/signup', data),
 
   login: (data: { email: string; password: string }) =>
-    api.post('/auth/login', data),
+    api.post('/api/auth/login', data),
 
   getProfile: () =>
-    api.get('/auth/profile'),
+    api.get('/api/auth/profile'),
 
   updateProfile: (data: Record<string, unknown>) =>
-    api.put('/auth/profile', data),
+    api.put('/api/auth/profile', data),
 
   changePassword: (data: { currentPassword: string; newPassword: string }) =>
-    api.put('/auth/change-password', data),
+    api.put('/api/auth/change-password', data),
 };
