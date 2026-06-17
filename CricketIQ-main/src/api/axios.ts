@@ -5,7 +5,7 @@ const API_URL =
   'https://cricketiq-nwsy.onrender.com';
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_URL,
   headers: { 'Content-Type': 'application/json' },
 });
 
