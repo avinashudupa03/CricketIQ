@@ -3,7 +3,11 @@ import { validationResult } from 'express-validator';
 import User from '../models/User.js';
 
 function signToken(id) {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE });
+  return jwt.sign(
+    { id },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRE || '7d' }
+  );
 }
 
 export async function signup(req, res) {
