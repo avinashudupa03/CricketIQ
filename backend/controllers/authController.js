@@ -27,7 +27,8 @@ export async function signup(req, res) {
       token,
       user: { id: user._id, name: user.name, email: user.email, plan: user.plan, role: user.role },
     });
-  } catch (err) {
+  }catch (err) {
+    console.error('Signup error:', err);
     res.status(500).json({ message: 'Server error during signup.', error: err.message });
   }
 }
