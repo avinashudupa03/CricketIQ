@@ -47,4 +47,10 @@ app.use((err, req, res, _next) => {
 
 app.use('/api/cricket', cricketRoutes);
 
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`CricketIQ backend running on port ${PORT}`);
+});
+
 export default app;
