@@ -1,23 +1,22 @@
 import express from 'express';
-import axios from 'axios';
 
 const router = express.Router();
 
 router.get('/live', async (req, res) => {
   try {
-    const response = await axios.get('https://api.cricapi.com/v1/currentMatches', {
-      params: {
-        apikey: process.env.CRICKET_API_KEY,
-        offset: 0,
-      },
-      timeout: 15000,
-    });
+    const apiKey = process.env.CRICKET_API_KEY;
 
-    res.json(response.data);
+    const response = await fetch(
+      `https://api.cricapi.com/v1/currentMatches?apikey=${apiKey}&offset=0`
+    );
+
+    const data = await response.json();
+
+    res.json(data);
   } catch (error) {
     res.status(500).json({
       message: 'Error fetching live matches',
-      error: error.response?.data || error.message,
+      error: error.message,
     });
   }
 });
