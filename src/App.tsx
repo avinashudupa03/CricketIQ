@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Layout from './components/layout/Layout';
-import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
@@ -33,20 +32,22 @@ export default function App() {
           error: { iconTheme: { primary: '#ef4444', secondary: '#fff' } },
         }}
       />
+
       <Routes>
-        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/players" element={<Players />} />
-          <Route path="/teams" element={<Teams />} />
-          <Route path="/matches" element={<Matches />} />
-          <Route path="/tournaments" element={<Tournaments />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/rankings" element={<Rankings />} />
-          <Route path="/career" element={<Career />} />
-          <Route path="/profile" element={<Profile />} />
+
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="players" element={<Players />} />
+          <Route path="teams" element={<Teams />} />
+          <Route path="matches" element={<Matches />} />
+          <Route path="tournaments" element={<Tournaments />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="rankings" element={<Rankings />} />
+          <Route path="career" element={<Career />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
