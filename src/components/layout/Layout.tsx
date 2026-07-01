@@ -27,7 +27,7 @@ export default function Layout() {
   const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const name = user?.name || '';
   const nameParts = name.split(' ');
   const initials = nameParts.length >= 2 ? (nameParts[0][0] + nameParts[nameParts.length - 1][0]).toUpperCase() : name.slice(0, 2).toUpperCase();
@@ -108,12 +108,21 @@ export default function Layout() {
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-pitch-500 rounded-full" />
             </button>
             {user ? (
+  {user ? (
   <button
-    onClick={() => navigate('/profile')}
-    className="w-9 h-9 rounded-full bg-pitch-600/30 border border-pitch-500/20 flex items-center justify-center text-sm font-semibold text-pitch-400 cursor-pointer hover:bg-pitch-600/40 transition-colors"
+    onClick={logout}
+    className="px-4 py-2 rounded-lg bg-red-600/30 border border-red-500/20 text-sm font-semibold text-red-400 hover:bg-red-600/40 transition-colors"
   >
-    {initials}
+    Logout
   </button>
+) : (
+  <button
+    onClick={() => navigate('/login')}
+    className="px-4 py-2 rounded-lg bg-pitch-600/30 border border-pitch-500/20 text-sm font-semibold text-pitch-400 hover:bg-pitch-600/40 transition-colors"
+  >
+    Login
+  </button>
+)}
 ) : (
   <button
     onClick={() => navigate('/login')}
